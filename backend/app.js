@@ -17,4 +17,8 @@ app.get('/', (req, res) => {
   res.send('hi ~');
 })
 
+app.post('/', (req, res) => {
+  res.status(200).json({ success: true });
+})
+
 export default app;
