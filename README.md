@@ -28,7 +28,22 @@
 ### 사전 준비 사항
 
 > **여러분의 제품/서비스를 Microsoft 애저 클라우드에 배포하기 위해 사전에 필요한 준비 사항들을 적어주세요.**
+ - npm
+ - Node js
+ - GitHub Account
+ - Azaure Account
+ - Azaure CLI
 
 ## 시작하기
 
 > **여러분의 제품/서비스를 Microsoft 애저 클라우드에 배포하기 위한 절차를 구체적으로 나열해 주세요.**
+ 1. 해당 레포지토리를 fork 한다.
+ 2. 아래 명령어를 순서대로 Azaure 리소스를 생성합니다
+```
+$RESOURCE_GROUP_NAME = "rg-hg-minisang"
+$LOCATION = "koreacentral"
+$WEBAPP_NAME = "jikeemeapi"
+az login
+az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
+az webapp create --resource-group $RESOURCE_GROUP_NAME --name $WEBAPP_NAME --location $LOCATION 
+```
