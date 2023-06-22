@@ -31,14 +31,14 @@
  - npm
  - Node js
  - GitHub Account
- - Azaure Account
- - Azaure CLI
+ - Azure Account
+ - Azure CLI
 
 ## 시작하기
 
 > **여러분의 제품/서비스를 Microsoft 애저 클라우드에 배포하기 위한 절차를 구체적으로 나열해 주세요.**
- 1. 해당 레포지토리를 fork 한다.
- 2. 아래 명령어를 순서대로 Azaure 리소스를 생성합니다(
+ 1. 해당 레포지토리를 fork 한다(repository_name 동일하게)
+ 2. 아래 명령어를 순서대로 Azure 리소스를 생성합니다(
 ```
 $GITHUB_USERNAME = ""
 $RESOURCE_GROUP_NAME = "rg-hg-minisang"
@@ -55,4 +55,7 @@ az webapp deployment workflow set --name $WEBAPP_NAME --resource-group $RESOURCE
 az webapp workflow show --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --workflow-name "azure-webapps-node" --repository-url "https://github.com/$GITHUB_USERNAME/minisang.git" --repository-type "GitHub" --file-path .github/workflows/azure-webapps-node.yml
 az webapp deployment list-publishing-profiles --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --xml --output $PUBLISH_PATH
 ```
- 3. 
+ 3. [azaure](https://portal.azure.com)으로 접속하여 자동으로 생성된 rg-hg-minisang 리소스 그룹 안에 `jikeemeapi` 리소스를 클릭한다.
+ 4. 게시 프로필을 다운하여 안의 값을 전부 복사한다.
+ 5. 1번에서 fork한 레포지토리에서 settings -> Secrets and variables -> Actions 탭으로 이동하여 `New repository secret` 초록 버튼을 누른다.
+ 6. `Name` 칸에는 `AzureAppService_PublishProfile_c8f24da23f794de8a01db4458907992e`을 입력하고 `secret` 칸에는 4번에서 복사한 값을 붙여 넣고 `Add secret` 초록 버튼을 누른다.
