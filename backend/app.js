@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
-  res.send('hi test~');
+  res.send('hi test~ !!!!');
 })
 
 app.post('/', (req, res) => {
