@@ -5,15 +5,14 @@ const app = express();
 import bodyParser from 'body-parser';
  
 
+//routes
+import authRouter from './src/controllers/authController.js';
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-  res.send('hi test~ !!!!');
-})
 
-app.post('/', (req, res) => {
-  res.status(200).json({ success: true });
-})
+app.use('/api/auth', authRouter)
+
 
 export default app;
