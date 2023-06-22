@@ -44,6 +44,7 @@ $GITHUB_USERNAME = ""
 $RESOURCE_GROUP_NAME = "rg-hg-minisang"
 $LOCATION = "koreacentral"
 $WEBAPP_NAME = "jikeemeapi"
+$PUBLISH_PATH = ""
 
 az login
 az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
@@ -52,4 +53,6 @@ az webapp config set --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME -
 az webapp deployment source config --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --repo-url "https://github.com/$GITHUB_USERNAME/minisang.git" --branch "main" --manual-integration
 az webapp deployment workflow set --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --branch main --workflow-name <WORKFLOW_NAME>
 az webapp workflow show --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --workflow-name "azure-webapps-node" --repository-url "https://github.com/$GITHUB_USERNAME/minisang.git" --repository-type "GitHub" --file-path .github/workflows/azure-webapps-node.yml
+az webapp deployment list-publishing-profiles --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --xml --output $PUBLISH_PATH
 ```
+ 3. 
