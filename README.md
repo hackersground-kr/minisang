@@ -38,12 +38,20 @@
 
 > **여러분의 제품/서비스를 Microsoft 애저 클라우드에 배포하기 위한 절차를 구체적으로 나열해 주세요.**
  1. 해당 레포지토리를 fork 한다.
- 2. 아래 명령어를 순서대로 Azaure 리소스를 생성합니다
-```
+ 2. 아래 명령어를 순서대로 Azaure 리소스를 생성합니다(
+``
+$GITHUB_USERNAME = ""
 $RESOURCE_GROUP_NAME = "rg-hg-minisang"
 $LOCATION = "koreacentral"
 $WEBAPP_NAME = "jikeemeapi"
+
 az login
 az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
-az webapp create --resource-group $RESOURCE_GROUP_NAME --name $WEBAPP_NAME --location $LOCATION 
+az webapp create --resource-group $RESOURCE_GROUP_NAME --name $WEBAPP_NAME --location $LOCATION --plan B1 --runtime "NODE|18-lts"
+az webapp config set --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --startup-file "npm start"
+az webapp deployment source config --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --repo-url "https://github.com/$GITHUB_USERNAME/minisang.git" --branch "main" --manual-integration
+az webapp deployment workflow set --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --branch main --workflow-name <WORKFLOW_NAME>
+az webapp workflow show --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP_NAME --workflow-name "azure-webapps-node" --repository-url "https://github.com/$GITHUB_USERNAME/minisang.git" --repository-type "GitHub" --file-path .github/workflows/azure-webapps-node.yml
+
+
 ```
